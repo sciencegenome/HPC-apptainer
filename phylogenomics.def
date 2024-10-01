@@ -1,0 +1,58 @@
+Bootstrap: docker
+From: ubuntu:22.04
+
+%post
+apt-get update
+apt-get install -y build-essential
+apt-get install -y git
+apt-get install -y python3
+apt-get install -y libterm-readline-gnu-perl
+apt-get -y install python3-pip
+apt-get install wget
+apt-get install g++
+
+cd /opt
+git clone https://github.com/chaoszhang/ASTER.git
+cd ASTER
+make
+
+mkdir /opt/orthofinder && cd /opt/orthofinder
+wget https://github.com/davidemms/OrthoFinder/releases/download/2.5.5/OrthoFinder.tar.gz
+tar zxvf OrthoFinder.tar.gz
+cd Orthofinder
+
+mkdir /opt/raxml && cd /opt/raxml
+wget https://github.com/amkozlov/raxml-ng/releases/download/1.2.2/raxml-ng_v1.2.2_linux_x86_64.zip
+unzip raxml-ng_v1.2.2_linux_x86_64.zip
+
+
+mkdir /opt/alignment && cd /opt/alignment
+git clone https://github.com/inab/trimal.git
+cd trimal
+make
+cd ..
+mkdir /opt/alignment/alignmentGO
+cd alignmentGO
+git clone https://github.com/codecreatede/alignmentGo.git
+
+%environment
+export PATH=/opt/ASTER:$PATH
+export PATH=/opt/orthofinder:$PATH
+export PATH=/opt/raxml:$PATH
+export PATH=/opt/alignment/trimal:$PATH
+export PATH=/opt/alignment/alignmentGO:$PATH
+
+%labels
+Author Gaurav Sablok
+Contact: gauravcodepro@gmail.com
+This is the apptainer compilation for phylogenomics. This single container has
+all the phylogenomics tools compiled and enabled for the phylogenomics. It includes
+the orthology analysis ASTRAL species tree estimation, boostrapping phylogenies using
+the RAXML and the alignment analysis using the trimal and the alignmentGO.
+
+%help
+Given an folder of the fasta file you can invoke the apptainer orthofinder as
+apptainer run phylogenomics.sif orthofinder PATH-FASTA-FOLDER
+apptainer run phylogenomics.sif aster -h
+apptainer run phylogenomics.sif trimal -h
+apptainer run phylogenomics.sif alignmentGO -h
