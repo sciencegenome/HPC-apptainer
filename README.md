@@ -13,13 +13,10 @@ apptainer run phylogenomics.sif alignmentGO -h
 apptainer run clipkit -h
 ```
 - post genome assembly apptainer. genome completeness, phylogenomic profiling search. protein-genome alignment for genome annotation inclduing the hint search. 
-
 ```
 apptainer build genomeannotate.sif genomeannotate.def
 ```
-
 - apptainer for the genome assembly coming from the pacbiohifi reads. it includes two genome assembler and one is hifiasm and the other is verkko. The benchmark for the assembly for these assemblers are located at my another repository [genomeasembly-pacbiohifi](https://github.com/sciencegenome/genomeassembly-pacbiohifi)
-
 - to invoke the hifiasm apptainer 
 ```
 module load singularity
@@ -34,10 +31,8 @@ echo ".opt/conda/etc/profile.d/conda.sh" >> $ENV_PATH
 - inspect the images after the build 
 ```
 for i in *.sif; do apptainer inspect ${i}; done
-``
-
+```
 - apptainer images for the cpat you can directly call this from the sanbox repositories. 
- 
 ```
 apptainer build cpat.sif apptainer.def
 ```
@@ -54,7 +49,6 @@ apptainer exec cpat.sif cpat
 module load singularity
 ```
 - to install the apptainer on the new ubuntu version.
-
 ```
 sh apptainer-install.sh 
 ```
