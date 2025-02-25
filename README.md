@@ -53,9 +53,10 @@ apptainer exec cpat.sif cpat
 ```
 module load singularity
 ```
-- to install the apptainer on the new ubuntu version. 
+- to install the apptainer on the new ubuntu version.
+
 ```
 sh apptainer-install.sh 
-``
+```
 
 Gaurav Sablok
