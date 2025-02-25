@@ -1,0 +1,46 @@
+Bootstrap: docker
+From: ubuntu:22.04
+%post
+apt-get update
+apt-get install -y build-essential
+apt-get install -y git
+apt-get install -y python3
+apt-get install -y libterm-readline-gnu-perl
+apt-get -y install python3-pip
+apt-get install wget
+mkdir /opt/compleasm
+cd /opt/compleasm
+wget https://github.com/huangnengCSU/compleasm/releases/download/v0.2.6/compleasm-0.2.6_x64-linux.tar.bz2
+tar -jxvf compleasm-0.2.6_x64-linux.tar.bz2
+cd /opt
+mkdir /opt/seppinstall
+cd /opt/seppinstall
+git clone https://github.com/smirarab/sepp.git
+cd sepp
+python3 setup.py config -c
+python3 setup.py install
+cd /opt/
+mkdir /opt/hmmer
+cd /opt/hmmer
+wget http://eddylab.org/software/hmmer/hmmer.tar.gz
+tar zxf hmmer.tar.gz
+cd hmmer-3.4
+./configure --prefix /opt/hmmer
+make
+make check
+make install
+cd /opt/
+mkdir /opt/miniprotinstall
+cd /opt/miniprotinstall
+git clone https://github.com/lh3/miniprot
+cd miniprot && make
+%environment
+export PATH=/opt/compleasm/compleasm_kit:$PATH
+export PATH=/opt/seppinstall/sepp/:$PATH
+export PATH=/opt/hmmer/:$PATH
+export PATH=/opt/miniprotinstall/miniprot:$PATH
+%labels
+Author Gaurav Sablok
+Contact: gauravcodepro@gmail.com
+This is the apptainer compilation for genome completeness, phylogenomics profiling.
+It includes the genome annotation and phylogenomic profiling.
