@@ -1,0 +1,18 @@
+Bootstrap: docker 
+From: ubuntu:22.04
+%post 
+apt-get -y update
+apt-get install -y python3-full
+apt-get install -y libterm-readline-gnu-perl
+apt-get -y install python3-pip
+pip3 install cpat 
+%environment
+export LC_ALL=C
+%labels
+Author Gaurav Sablok
+Contact: gauravcodepro@gmail.com
+This is an apptainer container for the cpat. CPAT is used to the access the coding potential using the
+logistic regression model. For more details on the CPAT, visit this github repository:https://github.com/liguowang/cpat
+%help
+This is an apptainer container for the cpat. CPAT is used to the access the coding potential using the
+logistic regression model. For more details on the CPAT, visit this github repository:https://github.com/liguowang/cpat
