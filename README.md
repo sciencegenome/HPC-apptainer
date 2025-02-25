@@ -1,9 +1,8 @@
-# phylogenomics-apptainer 
+# HPC-apptainer
 
-- a apptainer for the phylogenomics
-- it contains all the applications combined in a single container for the phylogenomics.
-- it incldues orthofinder, astral, trimal, alignmentGO, raxml and clipkit. 
-- all the applications required for the genome analysis and genome or gene based phylogenomics.  
+## Multiple apptainer images for HPC computing. 
+
+- a apptainer for the phylogenomics. it contains all the applications combined in a single container for the phylogenomics. it incldues orthofinder, astral, trimal, alignmentGO, raxml and clipkit. all the applications required for the genome analysis and genome or gene based phylogenomics.  
 ```
 apptainer exec phylogenomics.def
 Given an folder of the fasta file you can invoke the apptainer as
@@ -13,17 +12,13 @@ apptainer run phylogenomics.sif trimal -h
 apptainer run phylogenomics.sif alignmentGO -h
 apptainer run clipkit -h
 ```
-- post genome assembly apptainer. 
-- genome completeness, phylogenomic profiling search
-- protein-genome alignment for genome annotation inclduing the hint search. 
+- post genome assembly apptainer. genome completeness, phylogenomic profiling search. protein-genome alignment for genome annotation inclduing the hint search. 
 
 ```
 apptainer build genomeannotate.sif genomeannotate.def
 ```
 
-- apptainer for the genome assembly coming from the pacbiohifi reads.
-- it includes two genome assembler and one is hifiasm and the other is verkko.
-- The benchmark for the assembly for these assemblers are located at my another repository [genomeasembly-pacbiohifi](https://github.com/codecreatede/genomeassembly-pacbiohifi)
+- apptainer for the genome assembly coming from the pacbiohifi reads. it includes two genome assembler and one is hifiasm and the other is verkko. The benchmark for the assembly for these assemblers are located at my another repository [genomeasembly-pacbiohifi](https://github.com/sciencegenome/genomeassembly-pacbiohifi)
 
 - to invoke the hifiasm apptainer 
 ```
@@ -42,7 +37,6 @@ for i in *.sif; do apptainer inspect ${i}; done
 ``
 
 - apptainer images for the cpat you can directly call this from the sanbox repositories. 
-- to build the image
  
 ```
 apptainer build cpat.sif apptainer.def
